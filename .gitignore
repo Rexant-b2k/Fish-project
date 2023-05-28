@@ -161,3 +161,6 @@ cython_debug/
 
 # VSCode
 .vscode/
+
+# Settings. Temporary
+Fish_project/settings.py
