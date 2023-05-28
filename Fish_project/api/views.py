@@ -20,6 +20,11 @@ class TaskViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('category',)
 
+    def perform_create(self, serializer):
+        category_id = self.request.data.get('category')
+        category = get_object_or_404(models.Category, id=category_id)
+        serializer.save(category=category)
+
 
 class HintViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HintSerializer
