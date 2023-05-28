@@ -18,7 +18,8 @@ class Category(models.Model):
     text = models.CharField(
         'Категория',
         max_length=128,
-        choices=CATEGORY
+        choices=CATEGORY,
+        unique=True
     )
 
     def __str__(self) -> str:
