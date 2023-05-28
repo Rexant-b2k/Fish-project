@@ -163,4 +163,5 @@ cython_debug/
 .vscode/
 
 # Settings. Temporary
-Fish_project/settings.py
+Fish_project/settings.py 
+# was useless
