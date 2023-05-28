@@ -8,7 +8,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Category
-        fields = ('text',)
+        fields = ('id', 'text')
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -16,11 +16,11 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Task
-        fields = ('header', 'text', 'image', 'category', 'add_date', 'answer')
+        fields = ('id', 'header', 'text', 'image', 'category', 'add_date', 'answer')
 
 
 class HintSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Hint
-        fields = ('task', 'level', 'text')
+        fields = ('id', 'task', 'level', 'text')
