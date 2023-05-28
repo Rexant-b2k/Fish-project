@@ -42,6 +42,7 @@ class Task(models.Model):
         related_name='tasks',
         verbose_name='Категория задачи'
     )
+    answer = models.CharField('Ответ', max_length=300)
     
     def __str__(self) -> str:
         return self.header[:self.TEXT_LIMIT_SYMB]
