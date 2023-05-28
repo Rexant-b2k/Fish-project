@@ -1,3 +1,4 @@
+from random import choice
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, viewsets
@@ -29,3 +30,15 @@ class HintViewSet(viewsets.ModelViewSet):
             id=self.kwargs.get('task_id')
         )
         return task.hints
+
+
+class RandomTaskViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = serializers.TaskSerializer
+
+    def get_queryset(self):
+        category = self.request.query_params.get('category')
+        rel_tasks = models.Task.objects.filter(category=category).values_list('id')
+        random_task = choice(rel_tasks)
+        return models.Task.objects.filter(id__in=random_task)
+
+
