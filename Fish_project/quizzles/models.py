@@ -27,7 +27,6 @@ class Category(models.Model):
 
 
 class Task(models.Model):
-    TEXT_LIMIT_SYMB = 15
     header = models.CharField('Заголовок', max_length=64)
     text = models.TextField('Тест задачи', blank=True)
     image = models.ImageField(
@@ -44,9 +43,10 @@ class Task(models.Model):
         verbose_name='Категория задачи'
     )
     answer = models.CharField('Ответ', max_length=300)
+    topic = models.CharField('Тема задачи', max_length=100, default='Общая тема')
     
     def __str__(self) -> str:
-        return self.header[:self.TEXT_LIMIT_SYMB]
+        return self.header
 
     class Meta:
         verbose_name = 'Задача'

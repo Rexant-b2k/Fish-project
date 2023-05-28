@@ -162,6 +162,5 @@ cython_debug/
 # VSCode
 .vscode/
 
-# Settings. Temporary
-Fish_project/settings.py 
-# was useless
+# Media
+# Fish_project/media

@@ -16,7 +16,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Task
-        fields = ('id', 'header', 'text', 'image', 'category', 'add_date', 'answer')
+        fields = ('id', 'header', 'text', 'image', 'category', 'topic', 'add_date', 'answer')
 
 
 class HintSerializer(serializers.ModelSerializer):
