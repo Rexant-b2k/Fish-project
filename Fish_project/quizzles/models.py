@@ -68,3 +68,9 @@ class Hint(models.Model):
     )
     level = models.IntegerField('Уровень подсказки', choices=LEVELS)
     text = models.TextField('Подсказка')
+
+
+class Player(models.Model):
+    player_id = models.CharField(max_length=128)
+    score = models.IntegerField('Счет', default=0)
+    solved_tasks = models.ManyToManyField(Task, related_name='players')

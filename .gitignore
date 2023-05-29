@@ -163,4 +163,4 @@ cython_debug/
 .vscode/
 
 # Media
-# Fish_project/media
+Fish_project/media
