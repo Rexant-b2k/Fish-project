@@ -1,7 +1,9 @@
 from random import choice
+from django.db.models import ManyToManyRel
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, viewsets
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.pagination import LimitOffsetPagination
 
@@ -53,5 +55,14 @@ class PlayerViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('player_id',)
 
-    # def partial_update(self, request, *args, **kwargs):
-    #     # return super().partial_update(request, *args, **kwargs)
+    def partial_update(self, request, *args, **kwargs):
+        player: models.Player = self.get_object()
+        data: dict = request.data
+        if data.get('score'):
+            player.score += data.get('score')
+        if data.get('solved_tasks'):
+            player.solved_tasks.add(data.get('solved_tasks')[0])
+        player.save()
+        serializer = serializers.PlayerSerializer(player, data=request.data, partial=True)
+        serializer.is_valid()
+        return Response(serializer.data)
