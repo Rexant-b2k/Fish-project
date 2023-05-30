@@ -47,3 +47,11 @@ class RandomTaskViewSet(viewsets.ReadOnlyModelViewSet):
         return models.Task.objects.filter(id__in=random_task)
 
 
+class PlayerViewSet(viewsets.ModelViewSet):
+    queryset = models.Player.objects.all()
+    serializer_class = serializers.PlayerSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('player_id',)
+
+    # def partial_update(self, request, *args, **kwargs):
+    #     # return super().partial_update(request, *args, **kwargs)

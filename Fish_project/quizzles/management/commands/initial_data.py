@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from quizzles.models import Task, Category, Hint
+from quizzles.models import Task, Category, Hint, Player
 
 class Command(BaseCommand):
 
@@ -28,6 +28,10 @@ class Command(BaseCommand):
         hint8 = Hint.objects.create(task=task8, level=1, text='Если мальчик ниже кого-то, то он не может быть самым высоким')
 
         task9 = Task.objects.create(header='Приготовление рыбов', image='quizzles/Jo.jpg', category=cat2, answer='Джо не делится едой!')
+
+        pl1 = Player.objects.create(player_id='serg')
+        pl2 = Player.objects.create(player_id='nata')
+        pl2.solved_tasks.set([1, 4, 7])
 
  
     def handle(self, *args, **options):

@@ -71,6 +71,6 @@ class Hint(models.Model):
 
 
 class Player(models.Model):
-    player_id = models.CharField(max_length=128)
+    player_id = models.CharField(max_length=128, unique=True)
     score = models.IntegerField('Счет', default=0)
-    solved_tasks = models.ManyToManyField(Task, related_name='players')
+    solved_tasks = models.ManyToManyField(Task, related_name='players', blank=True)
