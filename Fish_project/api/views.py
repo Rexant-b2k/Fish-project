@@ -44,7 +44,11 @@ class RandomTaskViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         category = self.request.query_params.get('category')
-        rel_tasks = models.Task.objects.filter(category=category).values_list('id')
+        category_tasks = models.Task.objects.filter(category=category)
+        player = self.request.query_params.get('player_id')
+        solved_tasks = models.Player.objects.get(player_id=player).solved_tasks.filter(category=category)
+        # special_tasks = models.Task.objects.filter(category=category).exclude(players__player_id=player).values_list('id')
+        rel_tasks = category_tasks.difference(solved_tasks).values_list('id')
         random_task = choice(rel_tasks)
         return models.Task.objects.filter(id__in=random_task)
 
