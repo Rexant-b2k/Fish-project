@@ -69,3 +69,29 @@ class PlayerViewSet(viewsets.ModelViewSet):
         serializer = serializers.PlayerSerializer(player, data=request.data, partial=True)
         serializer.is_valid()
         return Response(serializer.data)
+
+
+    # def update(self, request, *args, **kwargs):
+    #     partial = kwargs.pop('partial', False)
+    #     instance: models.Player = self.get_object()
+    #     data: dict = request.data
+    #     if getattr(instance, 'score', None):
+    #         data['score'] = instance.score + data['score']
+    #     if getattr(instance, 'solved_tasks', None):
+    #         instance.solved_tasks.add(data.get('solved_tasks')[0])
+    #         instance.save()
+    #     # if request.data.get('score'):
+    #     #     instance.score == request.data.get('score')
+    #     # if request.data.get('solved_tasks'):
+    #     #     instance.solved_tasks.add(request.data)
+
+    #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_update(serializer)
+
+    #     if getattr(instance, '_prefetched_objects_cache', None):
+    #         # If 'prefetch_related' has been applied to a queryset, we need to
+    #         # forcibly invalidate the prefetch cache on the instance.
+    #         instance._prefetched_objects_cache = {}
+
+    #     return Response(serializer.data)

@@ -31,4 +31,4 @@ class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Player
         fields = ('id', 'player_id', 'score', 'solved_tasks')
-        read_only_fields = ('id', 'player_id')
+        # read_only_fields = ('id', 'player_id')

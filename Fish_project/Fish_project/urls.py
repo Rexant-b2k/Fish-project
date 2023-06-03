@@ -11,7 +11,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls'))
 ]
-# add redoc later
 
 if settings.DEBUG:
     urlpatterns += static(
