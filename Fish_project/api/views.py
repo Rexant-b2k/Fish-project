@@ -1,11 +1,9 @@
 from random import choice
-from django.db.models import ManyToManyRel
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, viewsets
+from rest_framework import filters, status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.pagination import LimitOffsetPagination
 
 from api import serializers
 from quizzles import models
@@ -69,6 +67,17 @@ class PlayerViewSet(viewsets.ModelViewSet):
         serializer = serializers.PlayerSerializer(player, data=request.data, partial=True)
         serializer.is_valid()
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        player_id: models.Player = self.get_object().id
+        category = request.query_params.get('category')
+        if not category:
+            return Response(status=status.HTTP_418_IM_A_TEAPOT, data="No category provided") 
+        tasks_to_delete = models.Player.solved_tasks.through.objects.filter(player_id=player_id, task__category=category)
+        count = tasks_to_delete.count()
+        tasks_to_delete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT, data=f'Deleted results: {count}')
+
 
 
     # def update(self, request, *args, **kwargs):
