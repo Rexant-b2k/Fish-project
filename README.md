@@ -7,11 +7,11 @@
 ## and also on:
 [![N|Solid](https://cdn.icon-icons.com/icons2/2699/PNG/512/gunicorn_logo_icon_170045.png)](https://gunicorn.org/)
 
-Fish-project is a hobby project for entertainment, learning, testing and improving skills on python and frameworks/
+Fish-project is a hobby project for entertainment, learning, testing and improving skills on python and frameworks.
 
 
 ## Features
-This module is a part of whole Fish project, contains only backend API module, which could be connected using json exchange of data plus admin module.
+This module is a part of whole Fish project. This module contains only backend API part, which could be connected using json exchange of data and admin zone.
 
 - Could create questions, quizzles, image-questions
 - There is generator of random tasks
